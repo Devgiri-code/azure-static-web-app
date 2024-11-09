@@ -38,3 +38,4 @@ jobs:
         skip_api_build: false  # If you want to skip the API build, set to true
         production_branch: 'main'  # Branch to deploy from (usually 'main')
         deployment_environment: 'production'  # Deployment environment (usually 'production')
+        deployment_action: 'deploy'  # Explicitly specify the action (should be 'deploy')
