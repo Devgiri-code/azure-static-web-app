@@ -1,34 +1,34 @@
-name: Deploy to Azure Static Web App
+name: Build and Deploy Static Web App
 
 on:
   push:
     branches:
-      - main  # Adjust the branch name as per your project
+      - main
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3  # No change needed, v3 supports Node.js 20
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  # Explicitly set to Node.js 20
+    # Checkout code from repository
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+    # Set up Node.js (Node.js 20)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
-      - name: Build project
-        run: npm run build  # Update this command as needed based on your project
-
-      - name: Deploy to Azure Static Web App
-        uses: azure/static-web-apps-deploy@v1
-        with:
-          app_location: '/'  # Root of the project (update if needed)
-          api_location: ''   # Set to the API folder if your project has one, or leave empty
-          app_artifact_location: '/dist'  # Path to the build output directory
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: 'deploy'  # Use 'deploy' as the valid action input
+    # Set up Azure Static Web Apps deployment
+    - name: 'Build and Deploy to Azure Static Web Apps'
+      uses: azure/static-web-apps-deploy@v1
+      with:
+        app_location: '/'  # Set to the location of your app's source code
+        api_location: 'api'  # If your app has an API, set its location here, else leave empty
+        app_artifact_location: 'build'  # Set to where your build files are generated (usually 'build' or 'dist')
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        skip_app_build: false  # If you want to skip the app build, set to true
+        skip_api_build: false  # If you want to skip the API build, set to true
+        production_branch: 'main'  # Set to the branch to deploy to (usually 'main')
+        deployment_environment: 'production'  # Set your deployment environment (e.g., 'production')
