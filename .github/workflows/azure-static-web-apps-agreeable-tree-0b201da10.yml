@@ -39,3 +39,4 @@ jobs:
           app_location: "/"  # Path to your static content ("/" if it's at the root)
           api_location: ""  # Leave empty if no API backend is used
           output_location: ""  # Leave empty for static files (or specify if needed)
+          deployment_action: "upload"  # This is where you specify the deployment action, which is "upload" in most cases.
