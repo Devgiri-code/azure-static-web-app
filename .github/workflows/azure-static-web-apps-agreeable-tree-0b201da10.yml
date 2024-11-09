@@ -26,4 +26,4 @@ jobs:
       with:
         app_location: '/'  # Set to the location of your app's source code
         api_location: 'api'  # If your app has an API, set its location here, else leave empty
-        app_artifact_location: 'build'  # Set to wher
+        app_artifact_location: 'build'  # Set to where you
