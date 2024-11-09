@@ -20,22 +20,10 @@ jobs:
       with:
         node-version: '20'
 
-    # Install dependencies and build the app (if applicable)
-    - name: Install dependencies and build app
-      run: |
-        npm install
-        npm run build
-
     # Set up Azure Static Web Apps deployment
     - name: 'Build and Deploy to Azure Static Web Apps'
       uses: azure/static-web-apps-deploy@v1
       with:
-        app_location: '/'  # Location of your app's source code
-        api_location: 'api'  # Set to 'api' if your app has an API, else leave it empty
-        app_artifact_location: 'build'  # Location where your build files are generated (usually 'build' or 'dist')
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        skip_app_build: false  # If you want to skip the app build, set to true
-        skip_api_build: false  # If you want to skip the API build, set to true
-        production_branch: 'main'  # Branch to deploy from (usually 'main')
-        deployment_environment: 'production'  # Deployment environment (usually 'production')
-        deployment_action: 'deploy'  # Explicitly specify the action (should be 'deploy')
+        app_location: '/'  # Set to the location of your app's source code
+        api_location: 'api'  # If your app has an API, set its location here, else leave empty
+        app_artifact_location: 'build'  # Set to wher
