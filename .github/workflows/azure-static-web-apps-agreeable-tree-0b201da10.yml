@@ -26,4 +26,10 @@ jobs:
       with:
         app_location: '/'  # Set to the location of your app's source code
         api_location: 'api'  # If your app has an API, set its location here, else leave empty
-        app_artifact_location: 'build'  # Set to where you
+        app_artifact_location: 'build'  # Set to where your build files are generated (usually 'build' or 'dist')
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        skip_app_build: false  # If you want to skip the app build, set to true
+        skip_api_build: false  # If you want to skip the API build, set to true
+        production_branch: 'main'  # Set to the branch to deploy to (usually 'main')
+        deployment_environment: 'production'  # Set your deployment environment (e.g., 'production')
+        deployment_action: 'deploy'  # Specify the deployment action to perform
