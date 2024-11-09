@@ -1,0 +1,14 @@
+{
+  "name": "my-static-web-app",
+  "version": "1.0.0",
+  "description": "A simple static web app deployed on Azure",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo \"No build process required\"",
+    "build": "echo \"No build process required\""
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Devgiri",
+  "license": "MIT"
+}
