@@ -1,31 +1,37 @@
-name: Build and Deploy Static Web App to Azure
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
     branches:
-      - main   # Trigger deployment when changes are pushed to the `main` branch
+      - main # or your default branch
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js (if you need Node.js)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      # Step 2: Set up Node.js (if needed, based on your project)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # or the version your app needs
 
-    - name: Install dependencies (if applicable)
-      run: |
-        npm install
+      # Step 3: Build your project (skip if static site)
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build # adjust based on your project
 
-    - name: Deploy to Azure Static Web Apps
-      uses: azure/static-web-apps-deploy@v1
-      with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        app_location: "/"     # Path to your `index.html` (root in this case)
-        api_location: ""      # Leave empty if you don't have a backend API
-        output_location: ""   # Leave empty if not using a build tool
+      # Step 4: Deploy to Azure Static Web Apps
+      - name: 'Deploy to Azure Static Web Apps'
+        uses: azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          app_location: '/' # location of your app, adjust if it's inside a subfolder
+          api_location: 'api' # adjust if you have an API (optional)
+          app_artifact_location: 'build' # adjust based on your build output folder
+          production_branch: 'main' # your production branch
