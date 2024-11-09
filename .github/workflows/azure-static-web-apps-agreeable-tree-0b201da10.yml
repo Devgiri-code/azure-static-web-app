@@ -23,9 +23,9 @@ jobs:
       - name: 'Build and Deploy to Azure Static Web Apps'
         uses: azure/static-web-apps-deploy@v1
         with:
-          app_location: '/'  # Adjust if your app is in a subfolder (e.g., 'swa-db-connections')
-          api_location: 'api'  # Adjust if you have an API and set the correct location
-          app_artifact_location: 'build'  # Adjust if your build output is located elsewhere
+          app_location: '/'  # Set to the location of your app's source code
+          api_location: 'api'  # Set to the location of your app's API if you have one
+          app_artifact_location: 'build'  # Set to where your build files are generated (usually 'build' or 'dist')
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           skip_app_build: false  # If you want to skip the app build, set to true
           skip_api_build: false  # If you want to skip the API build, set to true
