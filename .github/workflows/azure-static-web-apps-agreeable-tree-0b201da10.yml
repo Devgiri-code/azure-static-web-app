@@ -9,25 +9,26 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code from repository
+    
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js (Node.js 20)
+      # Step 2: Set up Node.js (version 20 as required by some actions)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Set up Azure Static Web Apps deployment
+      # Step 3: Set up Azure Static Web Apps Deployment
       - name: 'Build and Deploy to Azure Static Web Apps'
         uses: azure/static-web-apps-deploy@v1
         with:
-          app_location: '/'  # Set to the location of your app's source code
-          api_location: 'api'  # Set to the location of your app's API if you have one
-          app_artifact_location: 'build'  # Set to where your build files are generated (usually 'build' or 'dist')
+          app_location: '/'  # App source code location
+          api_location: ''   # Leave empty if no API is used
+          app_artifact_location: 'build'  # Location of your build folder (update if necessary)
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          skip_app_build: false  # If you want to skip the app build, set to true
-          skip_api_build: false  # If you want to skip the API build, set to true
-          production_branch: 'main'  # Set to the branch to deploy to (usually 'main')
-          deployment_environment: 'production'  # Set your deployment environment (e.g., 'production')
+          skip_app_build: false  # Set to true to skip app build if it's already built
+          skip_api_build: false  # Set to true to skip API build if no changes
+          production_branch: 'main'  # Set your production branch
+          deployment_environment: 'production'  # Set your deployment environment
