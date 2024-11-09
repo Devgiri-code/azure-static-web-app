@@ -17,11 +17,11 @@ jobs:
       - name: 'Checkout Code'
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js (needed for static web apps)
+      # Step 2: Set up Node.js (use Node.js 20 for future compatibility)
       - name: 'Set up Node.js'
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Or use the Node.js version that suits your project
+          node-version: '20'  # Updated to Node.js 20
 
       # Step 3: Install dependencies (only needed if you're using Node.js)
       - name: 'Install Dependencies'
@@ -29,13 +29,4 @@ jobs:
 
       # Step 4: Build the application (this step is optional for static HTML, skip if not needed)
       - name: 'Build'
-        run: npm run build  # Run the build script if you're using a JS framework like React or Vue.js
-
-      # Step 5: Deploy to Azure Static Web App
-      - name: 'Deploy to Azure Static Web App'
-        uses: azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}  # Use the secret here
-          app_location: "/"  # Path to your static content ("/" if it's at the root)
-          api_location: ""  # Leave empty if no API backend is used
-          output_location: ""  # Leave empty for
+        run: npm run build  # Run the build script if you're using a JS framework like Re
